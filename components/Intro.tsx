@@ -40,7 +40,7 @@ export default function Intro() {
         <Reveal delay={120}>
           <div
             ref={imgRef}
-            className="relative overflow-hidden rounded-2xl border border-[var(--border)]"
+            className="relative"
             style={{ transform: `translateY(${offset}px)` }}
           >
             <div className="relative aspect-[4/3]">
@@ -50,9 +50,19 @@ export default function Intro() {
                 alt="A figure within a futuristic hall, Jupiter beyond the glass"
                 className="absolute inset-0 h-full w-full object-cover"
               />
-              <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 55%, rgba(5,6,9,0.55))" }} />
+              {/* feather all edges into the space background so it blends seamlessly */}
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(to top, var(--bg) 1%, transparent 22%)," +
+                    "linear-gradient(to bottom, var(--bg) 1%, transparent 20%)," +
+                    "linear-gradient(to left, var(--bg) 1%, transparent 18%)," +
+                    "linear-gradient(to right, var(--bg) 1%, transparent 18%)",
+                }}
+              />
             </div>
-            <div className="pointer-events-none absolute inset-0 rounded-2xl" style={{ boxShadow: "inset 0 0 60px rgba(0,0,0,0.5)" }} />
           </div>
         </Reveal>
       </div>
