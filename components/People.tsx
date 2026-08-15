@@ -4,83 +4,83 @@ import { GROUPS, type Person } from "@/lib/data";
 import Reveal from "./Reveal";
 
 function initials(name: string) {
-  const parts = name.trim().split(/\s+/);
-  return ((parts[0]?.[0] ?? "") + (parts[parts.length - 1]?.[0] ?? "")).toUpperCase();
+  return name.split(" ").map((w) => w[0]).slice(0, 2).join("").toUpperCase();
 }
 
-function Avatar({ p }: { p: Person }) {
-  if (p.photo) {
-    return (
-      <span className="ring relative block h-14 w-14 overflow-hidden rounded-full">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={p.photo} alt={p.name} className="h-full w-full object-cover" />
-      </span>
-    );
-  }
+function Entry({ p, code }: { p: Person; code: string }) {
+  const NameTag: React.ElementType = p.link ? "a" : "span";
+  const nameProps = p.link
+    ? { href: p.link, target: "_blank", rel: "noopener noreferrer", className: "dlink font-display text-[1.02rem] font-semibold leading-tight" }
+    : { className: "font-display text-[1.02rem] font-semibold leading-tight text-[var(--fg)]" };
+
   return (
-    <span className="ring flex h-14 w-14 items-center justify-center rounded-full">
-      <span className="font-display text-sm font-semibold tracking-wide text-[var(--accent)]">
-        {initials(p.name)}
+    <div className="group flex items-start gap-4 border-t border-[var(--line)] py-4">
+      <span className="mt-1 hidden w-9 shrink-0 font-mono text-[0.62rem] tracking-[0.12em] text-[var(--faint)] sm:block">
+        {code}
       </span>
-    </span>
-  );
-}
 
-function Card({ p }: { p: Person }) {
-  const inner = (
-    <div className="card group flex h-full items-start gap-4 p-4 transition-all duration-300 hover:-translate-y-1 hover:border-[var(--border-strong)]">
-      <Avatar p={p} />
-      <div className="min-w-0">
-        <div className="flex items-center gap-1.5">
-          <h4 className="truncate font-display text-[0.98rem] font-medium">{p.name}</h4>
+      <div className="relative h-[70px] w-[56px] shrink-0 overflow-hidden border border-[var(--line-2)]">
+        {p.photo ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={p.photo} alt={p.name} className="h-full w-full object-cover" />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center bg-[var(--panel)] font-mono text-[0.8rem] tracking-[0.06em] text-[var(--amber)]">
+            {initials(p.name)}
+          </div>
+        )}
+      </div>
+
+      <div className="min-w-0 pt-0.5">
+        <NameTag {...nameProps}>
+          {p.name}
           {p.link && (
-            <svg className="shrink-0 text-[var(--faint)] transition-colors group-hover:text-[var(--accent)]" width="12" height="12" viewBox="0 0 14 14" fill="none">
-              <path d="M5 3h6v6M11 3L4 10" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+            <svg className="ml-1 inline-block -translate-y-px" width="9" height="9" viewBox="0 0 10 10" fill="none">
+              <path d="M2.5 7.5L7.5 2.5M3.5 2.5h4v4" stroke="currentColor" strokeWidth="1.1" />
             </svg>
           )}
-        </div>
+        </NameTag>
         <p className="mt-1 text-[0.82rem] leading-snug text-[var(--muted)]">{p.role}</p>
         {p.affiliation && (
-          <p className="mt-0.5 text-[0.76rem] leading-snug text-[var(--faint)]">{p.affiliation}</p>
+          <p className="mt-0.5 font-mono text-[0.66rem] leading-snug tracking-[0.02em] text-[var(--faint)]">
+            {p.affiliation}
+          </p>
         )}
       </div>
     </div>
-  );
-  return p.link ? (
-    <a href={p.link} target="_blank" rel="noopener noreferrer" className="block h-full">
-      {inner}
-    </a>
-  ) : (
-    inner
   );
 }
 
 export default function People() {
   return (
-    <section id="people" className="section relative mx-auto max-w-[var(--maxw)] px-6">
-      <Reveal>
-        <p className="eyebrow">People</p>
-        <h2 className="display-2 mt-5">The minds behind the workshop</h2>
-        <p className="lede mt-6">
+    <section id="people" className="section relative z-10 mx-auto max-w-[var(--maxw)] px-[var(--gutter)]">
+      <div className="flex items-center justify-between border-t border-[var(--line)] pt-3">
+        <span className="code">§ 02 — People</span>
+        <span className="code code-faint">02 / 04</span>
+      </div>
+
+      <Reveal className="mt-12">
+        <h2 className="h-sec max-w-[18ch]">The minds behind the workshop</h2>
+        <p className="lede mt-5">
           An interdisciplinary community spanning artificial intelligence, science,
           film, media, art, and design.
         </p>
       </Reveal>
 
-      <div className="mt-14 space-y-14">
+      <div className="mt-14 space-y-16">
         {GROUPS.map((g) => (
           <div key={g.id}>
             <Reveal>
-              <div className="flex items-center gap-4">
-                <h3 className="font-display text-lg font-medium tracking-tight">{g.title}</h3>
-                <span className="h-px flex-1 bg-[var(--border)]" />
-                <span className="text-xs text-[var(--faint)]">{g.people.length}</span>
+              <div className="mb-2 flex items-baseline gap-3">
+                <span className="code">{g.code}</span>
+                <h3 className="font-display text-[1.05rem] font-semibold uppercase tracking-[0.04em] text-[var(--fg)]">
+                  {g.title}
+                </h3>
               </div>
             </Reveal>
-            <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-x-10 sm:grid-cols-2">
               {g.people.map((p, i) => (
-                <Reveal key={p.name} delay={(i % 3) * 70}>
-                  <Card p={p} />
+                <Reveal key={p.name} delay={(i % 2) * 60}>
+                  <Entry p={p} code={`${g.code}·${String(i + 1).padStart(2, "0")}`} />
                 </Reveal>
               ))}
             </div>

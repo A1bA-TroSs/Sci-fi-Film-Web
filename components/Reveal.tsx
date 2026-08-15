@@ -1,16 +1,15 @@
 "use client";
 
 import { useReveal } from "./hooks";
-import type { ReactNode } from "react";
 
 export default function Reveal({
   children,
-  delay = 0,
   className = "",
+  delay = 0,
 }: {
-  children: ReactNode;
-  delay?: number;
+  children: React.ReactNode;
   className?: string;
+  delay?: number;
 }) {
   const [ref, shown] = useReveal<HTMLDivElement>();
   return (

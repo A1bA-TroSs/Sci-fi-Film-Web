@@ -1,39 +1,31 @@
 "use client";
 
 import Reveal from "./Reveal";
-import { useParallax } from "./hooks";
 
 export default function Vision() {
-  const [ref, offset] = useParallax<HTMLDivElement>(0.14);
   return (
-    <section id="vision" className="relative flex min-h-[92svh] items-center justify-center overflow-hidden">
-      {/* full-bleed cinematic still with parallax */}
-      <div ref={ref} className="absolute inset-0 -z-10" style={{ transform: `translateY(${offset}px) scale(1.12)` }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="images/hero_window.jpg"
-          alt="A figure gazes at Jupiter through a spaceship window"
-          className="h-full w-full object-cover"
-        />
-      </div>
-      <div aria-hidden className="absolute inset-0 -z-10" style={{ background: "linear-gradient(180deg, var(--bg) 0%, rgba(5,6,9,0.55) 30%, rgba(5,6,9,0.55) 70%, var(--bg) 100%)" }} />
+    <section id="vision" className="relative z-10 flex min-h-[92svh] flex-col justify-center px-[var(--gutter)]">
+      <div className="mx-auto w-full max-w-[var(--maxw)]">
+        <div className="flex items-center justify-between border-t border-[var(--line)] pt-3">
+          <span className="code">§ 04 — Vision</span>
+          <span className="code code-faint">04 / 04</span>
+        </div>
 
-      <div className="mx-auto max-w-3xl px-6 text-center">
-        <Reveal>
-          <p className="eyebrow">Our Vision</p>
-        </Reveal>
-        <Reveal delay={100}>
-          <h2 className="display-1 mt-6">
+        <Reveal className="mt-[clamp(48px,12vh,140px)]">
+          <p className="code mb-8">Our Vision</p>
+          <h2 className="display display-lg max-w-[14ch]">
             Create the Future.
             <br />
-            Tell the Story.
+            <span className="text-[var(--amber)]">Tell the Story.</span>
           </h2>
-        </Reveal>
-        <Reveal delay={200}>
-          <p className="mt-8 font-display text-lg tracking-[0.14em] text-[var(--accent)] sm:text-xl">
+          <p className="mt-10 font-mono text-[0.72rem] uppercase tracking-[0.22em] text-[var(--muted)]">
             Science · Cinema · Imagination · Artificial Intelligence
           </p>
         </Reveal>
+      </div>
+
+      <div className="mx-auto mt-[clamp(48px,12vh,140px)] w-full max-w-[var(--maxw)]">
+        <div className="rule" />
       </div>
     </section>
   );
