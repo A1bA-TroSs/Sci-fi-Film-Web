@@ -7,6 +7,14 @@ function initials(name: string) {
   return name.split(" ").map((w) => w[0]).slice(0, 2).join("").toUpperCase();
 }
 
+function photoStyle(name: string) {
+  if (name === "Sebastian Deterding" || name === "Zhonghua Yao") {
+    return { objectPosition: "center 30%" as const };
+  }
+
+  return undefined;
+}
+
 function Entry({ p, code }: { p: Person; code: string }) {
   const NameTag: React.ElementType = p.link ? "a" : "span";
   const nameProps = p.link
@@ -22,7 +30,7 @@ function Entry({ p, code }: { p: Person; code: string }) {
       <div className="relative h-[70px] w-[56px] shrink-0 overflow-hidden border border-[var(--line-2)]">
         {p.photo ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={p.photo} alt={p.name} className="h-full w-full object-cover" />
+          <img src={p.photo} alt={p.name} className="h-full w-full object-cover" style={photoStyle(p.name)} />
         ) : (
           <div className="flex h-full w-full items-center justify-center bg-[var(--panel)] font-mono text-[0.8rem] tracking-[0.06em] text-[var(--amber)]">
             {initials(p.name)}

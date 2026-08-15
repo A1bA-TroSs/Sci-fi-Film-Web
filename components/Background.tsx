@@ -30,14 +30,14 @@ export default function Background() {
       cv.width = window.innerWidth;
       cv.height = window.innerHeight;
       stars = [];
-      const n = Math.min(300, Math.round((cv.width * cv.height) / 7000));
+      const n = Math.min(360, Math.round((cv.width * cv.height) / 5500));
       for (let i = 0; i < n; i++) {
         const depth = Math.random(); // 0 far … 1 near
         stars.push({
           x: Math.random() * cv.width,
           y: Math.random() * cv.height,
-          r: 0.3 + depth * 1.0,             // small
-          a: 0.25 + depth * 0.55,
+          r: 0.5 + depth * 1.4,             // small but visible
+          a: 0.45 + depth * 0.55,
           par: 0.12 + depth * 0.55,         // scroll parallax — near stars stream faster
           tw: 1.2 + Math.random() * 2.4,    // twinkle speed
           ph: Math.random() * 6.28,
@@ -49,21 +49,44 @@ export default function Background() {
     build();
     window.addEventListener("resize", build);
 
+    let lastScroll = scroll.y;
+    let speed = 0; // smoothed scroll velocity (signed)
     const draw = () => {
       const H = cv.height;
       ctx.clearRect(0, 0, cv.width, H);
       const now = performance.now() / 1000;
       const drift = reduce ? 0 : now * 6; // gentle autonomous upward drift
+      const dv = scroll.y - lastScroll;
+      lastScroll = scroll.y;
+      speed += (dv - speed) * 0.4; // fast response to scroll
+      const aspeed = Math.abs(speed);
+      const dir = speed >= 0 ? 1 : -1; // scroll down → stars move up → trail points down
       for (const s of stars) {
-        // scroll down → subtract → star moves up; wrap
         let sy = s.y - scroll.y * s.par - drift;
         sy = ((sy % H) + H) % H;
         const twinkle = 0.45 + 0.55 * (0.5 + 0.5 * Math.sin(now * s.tw + s.ph));
-        const flick = Math.sin(now * s.fw + s.fp) > 0.9 ? 0.25 : 1; // occasional sharp flicker
-        ctx.beginPath();
-        ctx.arc(s.x, sy, s.r, 0, 6.283);
-        ctx.fillStyle = `rgba(238,232,218,${s.a * twinkle * flick})`;
-        ctx.fill();
+        const flick = Math.sin(now * s.fw + s.fp) > 0.9 ? 0.25 : 1;
+        const alpha = s.a * twinkle * flick;
+        // every star streaks into a vertical line; length scales with scroll speed + depth
+        const streak = reduce ? 0 : Math.min(260, aspeed * (0.55 + s.par) * 3.4);
+        if (streak > 0.8) {
+          const y2 = sy + streak * dir;
+          const head = Math.min(1, s.a * 1.35);
+          const grad = ctx.createLinearGradient(s.x, sy, s.x, y2);
+          grad.addColorStop(0, `rgba(240,235,222,${head})`);
+          grad.addColorStop(1, "rgba(240,235,222,0)");
+          ctx.strokeStyle = grad;
+          ctx.lineWidth = Math.max(0.7, s.r * 1.25);
+          ctx.beginPath();
+          ctx.moveTo(s.x, sy);
+          ctx.lineTo(s.x, y2);
+          ctx.stroke();
+        } else {
+          ctx.beginPath();
+          ctx.arc(s.x, sy, s.r, 0, 6.283);
+          ctx.fillStyle = `rgba(238,232,218,${alpha})`;
+          ctx.fill();
+        }
       }
       raf = requestAnimationFrame(draw);
     };

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Star warp demo</title>
+<style>
+  html,body{margin:0;background:#0b0a08;overflow-x:hidden}
+  canvas{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+  .spacer{height:500vh}
+  .hint{position:fixed;top:20px;left:0;right:0;z-index:2;text-align:center;color:#d6a45a;
+    font-family:ui-monospace,monospace;font-size:13px;letter-spacing:.18em;text-transform:uppercase}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div class="hint">Scroll down — the faster you scroll, the longer the star trails</div>
+<div class="spacer"></div>
+<script>
+const cv=document.getElementById("c"),ctx=cv.getContext("2d");
+const scroll={y:window.scrollY};
+addEventListener("scroll",()=>{scroll.y=window.scrollY;},{passive:true});
+let stars=[];
+function build(){cv.width=innerWidth;cv.height=innerHeight;stars=[];
+  const n=Math.min(360,Math.round(cv.width*cv.height/5500));
+  for(let i=0;i<n;i++){const d=Math.random();
+    stars.push({x:Math.random()*cv.width,y:Math.random()*cv.height,r:.5+d*1.4,a:.45+d*.55,
+      par:.12+d*.55,tw:1.2+Math.random()*2.4,ph:Math.random()*6.28,fw:3+Math.random()*5,fp:Math.random()*6.28});}}
+build();addEventListener("resize",build);
+let lastScroll=scroll.y,speed=0;
+(function draw(){const H=cv.height;ctx.clearRect(0,0,cv.width,H);
+  const now=performance.now()/1000;const drift=now*6;
+  const dv=scroll.y-lastScroll;lastScroll=scroll.y;speed+=(dv-speed)*0.4;
+  const aspeed=Math.abs(speed),dir=speed>=0?1:-1;
+  for(const s of stars){let sy=s.y-scroll.y*s.par-drift;sy=((sy%H)+H)%H;
+    const tw=.45+.55*(.5+.5*Math.sin(now*s.tw+s.ph));
+    const fl=Math.sin(now*s.fw+s.fp)>0.9?0.25:1;const alpha=s.a*tw*fl;
+    const streak=Math.min(260,aspeed*(0.55+s.par)*3.4);
+    if(streak>0.8){const y2=sy+streak*dir;const head=Math.min(1,s.a*1.35);
+      const g=ctx.createLinearGradient(s.x,sy,s.x,y2);
+      g.addColorStop(0,`rgba(240,235,222,${head})`);g.addColorStop(1,"rgba(240,235,222,0)");
+      ctx.strokeStyle=g;ctx.lineWidth=Math.max(.7,s.r*1.25);
+      ctx.beginPath();ctx.moveTo(s.x,sy);ctx.lineTo(s.x,y2);ctx.stroke();
+    }else{ctx.beginPath();ctx.arc(s.x,sy,s.r,0,6.283);ctx.fillStyle=`rgba(240,235,222,${alpha})`;ctx.fill();}}
+  requestAnimationFrame(draw);})();
+</script>
+</body>
+</html>

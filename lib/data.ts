@@ -6,7 +6,7 @@ export interface Person {
   role: string;
   affiliation: string;
   link?: string;
-  photo?: string; // relative path, e.g. "images/people/stanley-tong.jpg"
+  photo?: string; // relative path, e.g. "images/people/stanley-tong.jpg?v=4"
 }
 
 export interface Group {
@@ -22,17 +22,17 @@ export const GROUPS: Group[] = [
     title: "International Advisory & Review Panel",
     code: "A",
     people: [
-      { name: "Stanley Tong", role: "Internationally Acclaimed Film Director and Producer", affiliation: "", link: "https://en.wikipedia.org/wiki/Stanley_Tong", photo: "images/people/stanley-tong.jpg" },
-      { name: "Wu Yan", role: "Science-Fiction Writer and Professor", affiliation: "Southern University of Science and Technology", link: "https://www.sustech.edu.cn/en/faculties/wuyan-2.html", photo: "images/people/wu-yan.jpg" },
-      { name: "Zhigang Wang", role: "Professor", affiliation: "Tsinghua University", link: "https://www.enad.tsinghua.edu.cn/info/1229/1363.htm", photo: "images/people/zhigang-wang.jpg" },
-      { name: "Shengyi Ye", role: "Professor", affiliation: "Southern University of Science and Technology", link: "https://www.sustech.edu.cn/en/faculties/yeshengyi.html", photo: "images/people/shengyi-ye.jpg" },
-      { name: "Zhonghua Yao", role: "Associate Professor", affiliation: "The University of Hong Kong", link: "https://www.earthsciences.hku.hk/people/academic-staff/dr-yao-zhonghua", photo: "images/people/zhonghua-yao.jpg" },
-      { name: "Baoyang Chen", role: "Lecturer", affiliation: "Central Academy of Fine Arts", link: "https://baoyangchen.com/", photo: "images/people/baoyang-chen.jpg" },
-      { name: "Qiufan Chen", role: "Science-Fiction Writer and Assistant Professor", affiliation: "Hong Kong Metropolitan University", link: "https://www.hkmu.edu.hk/hlt/stanleychen/", photo: "images/people/qiufan-chen.jpg" },
-      { name: "Xian Xu", role: "Assistant Professor", affiliation: "Lingnan University", link: "https://www.ln.edu.hk/daci/our-people/faculty/prof-xian-xu", photo: "images/people/xian-xu.jpg" },
+      { name: "Stanley Tong", role: "Internationally Acclaimed Film Director and Producer", affiliation: "", link: "https://en.wikipedia.org/wiki/Stanley_Tong", photo: "images/people/stanley-tong.jpg?v=4" },
+      { name: "Wu Yan", role: "Science-Fiction Writer and Professor", affiliation: "Southern University of Science and Technology", link: "https://www.sustech.edu.cn/en/faculties/wuyan-2.html", photo: "images/people/wu-yan.jpg?v=4" },
+      { name: "Zhigang Wang", role: "Professor", affiliation: "Tsinghua University", link: "https://www.enad.tsinghua.edu.cn/info/1229/1363.htm", photo: "images/people/zhigang-wang.jpg?v=4" },
+      { name: "Shengyi Ye", role: "Professor", affiliation: "Southern University of Science and Technology", link: "https://www.sustech.edu.cn/en/faculties/yeshengyi.html", photo: "images/people/shengyi-ye.jpg?v=4" },
+      { name: "Zhonghua Yao", role: "Associate Professor", affiliation: "The University of Hong Kong", link: "https://www.earthsciences.hku.hk/people/academic-staff/dr-yao-zhonghua", photo: "images/people/zhonghua-yao.jpg?v=4" },
+      { name: "Baoyang Chen", role: "Lecturer", affiliation: "Central Academy of Fine Arts", link: "https://baoyangchen.com/", photo: "images/people/baoyang-chen.jpg?v=4" },
+      { name: "Qiufan Chen", role: "Science-Fiction Writer and Assistant Professor", affiliation: "Hong Kong Metropolitan University", link: "https://www.hkmu.edu.hk/hlt/stanleychen/", photo: "images/people/qiufan-chen.jpg?v=4" },
+      { name: "Xian Xu", role: "Assistant Professor", affiliation: "Lingnan University", link: "https://www.ln.edu.hk/daci/our-people/faculty/prof-xian-xu", photo: "images/people/xian-xu.jpg?v=4" },
       { name: "Yansong Chen", role: "Assistant Professor", affiliation: "Beijing Normal University" },
-      { name: "Shangchun Teng", role: "Research Assistant Professor", affiliation: "The University of Hong Kong", photo: "images/people/shangchun-teng.jpg" },
-      { name: "Xiangsong Wang", role: "Research Assistant Professor", affiliation: "The University of Hong Kong", photo: "images/people/xiangsong-wang.jpg" },
+      { name: "Shangchun Teng", role: "Research Assistant Professor", affiliation: "The University of Hong Kong", photo: "images/people/shangchun-teng.jpg?v=4" },
+      { name: "Xiangsong Wang", role: "Research Assistant Professor", affiliation: "The University of Hong Kong", photo: "images/people/xiangsong-wang.jpg?v=4" },
     ],
   },
   {
@@ -40,10 +40,10 @@ export const GROUPS: Group[] = [
     title: "Research Advisory Committee",
     code: "B",
     people: [
-      { name: "Huamin Qu", role: "Dean and Chair Professor", affiliation: "The Hong Kong University of Science and Technology", link: "https://cse.hkust.edu.hk/admin/people/faculty/profile/huamin", photo: "images/people/huamin-qu.jpg" },
-      { name: "Xiaojuan Ma", role: "Associate Professor", affiliation: "The Hong Kong University of Science and Technology", link: "https://cse.hkust.edu.hk/admin/people/faculty/profile/mxj", photo: "images/people/xiaojuan-ma.jpg" },
-      { name: "Sebastian Deterding", role: "Professor", affiliation: "Imperial College London", link: "https://profiles.imperial.ac.uk/s.deterding", photo: "images/people/sebastian-deterding.jpg" },
-      { name: "Rebecca Fiebrink", role: "Professor", affiliation: "University of the Arts London", link: "https://www.arts.ac.uk/creative-computing-institute/people/rebecca-fiebrink", photo: "images/people/rebecca-fiebrink.jpg" },
+      { name: "Huamin Qu", role: "Dean and Chair Professor", affiliation: "The Hong Kong University of Science and Technology", link: "https://cse.hkust.edu.hk/admin/people/faculty/profile/huamin", photo: "images/people/huamin-qu.jpg?v=4" },
+      { name: "Xiaojuan Ma", role: "Associate Professor", affiliation: "The Hong Kong University of Science and Technology", link: "https://cse.hkust.edu.hk/admin/people/faculty/profile/mxj", photo: "images/people/xiaojuan-ma.jpg?v=4" },
+      { name: "Sebastian Deterding", role: "Professor", affiliation: "Imperial College London", link: "https://profiles.imperial.ac.uk/s.deterding", photo: "images/people/sebastian-deterding.jpg?v=4" },
+      { name: "Rebecca Fiebrink", role: "Professor", affiliation: "University of the Arts London", link: "https://www.arts.ac.uk/creative-computing-institute/people/rebecca-fiebrink", photo: "images/people/rebecca-fiebrink.jpg?v=4" },
       { name: "Yulong Bian", role: "Visiting Professor", affiliation: "Nanyang Technological University" },
     ],
   },
@@ -52,11 +52,11 @@ export const GROUPS: Group[] = [
     title: "Research Team",
     code: "C",
     people: [
-      { name: "Yuying Tang", role: "Team Leader · PhD Candidate", affiliation: "The Hong Kong University of Science and Technology", link: "https://yuyingtang1999.github.io/", photo: "images/people/yuying-tang.jpg" },
+      { name: "Yuying Tang", role: "Team Leader · PhD Candidate", affiliation: "The Hong Kong University of Science and Technology", link: "https://yuyingtang1999.github.io/", photo: "images/people/yuying-tang.jpg?v=4" },
       { name: "Qingyue Cai", role: "Collaborator · Student", affiliation: "Renmin University of China" },
       { name: "Haotian Li", role: "Collaborator · Researcher", affiliation: "Microsoft Research Asia", link: "https://www.microsoft.com/en-us/research/people/haotianli/" },
-      { name: "Jiaxiong Hu", role: "Collaborator · Postdoctoral Fellow", affiliation: "The Hong Kong University of Science and Technology", link: "https://jiaxiong.notion.site/Jiaxiong-Hu-fdd7394b52f74ae78ab438aa93164c3d", photo: "images/people/jiaxiong-hu.jpg" },
-      { name: "Baiqiao Zhang", role: "Collaborator · PhD Student", affiliation: "The Hong Kong University of Science and Technology", link: "https://baiqiaozhang.cc/", photo: "images/people/baiqiao-zhang.jpg" },
+      { name: "Jiaxiong Hu", role: "Collaborator · Postdoctoral Fellow", affiliation: "The Hong Kong University of Science and Technology", link: "https://jiaxiong.notion.site/Jiaxiong-Hu-fdd7394b52f74ae78ab438aa93164c3d" },
+      { name: "Baiqiao Zhang", role: "Collaborator · PhD Student", affiliation: "The Hong Kong University of Science and Technology", link: "https://baiqiaozhang.cc/", photo: "images/people/baiqiao-zhang.jpg?v=4" },
     ],
   },
 ];
