@@ -4,10 +4,12 @@ import { INSTITUTIONS, type Institution } from "@/lib/data";
 import Reveal from "./Reveal";
 
 function Tile({ inst, featured }: { inst: Institution; featured: boolean }) {
+  // Wide horizontal wordmarks get more width so they don't read small.
+  const wide = inst.name === "The Central Academy of Drama";
   return (
     <figure className="flex h-full flex-col items-center text-center">
       <div
-        className={`flex w-full items-center justify-center rounded-md border border-[rgba(255,255,255,0.10)] bg-[rgba(255,255,255,0.12)] ${
+        className={`flex w-full items-center justify-center rounded-md border border-[rgba(255,255,255,0.28)] bg-[rgba(230,230,230,0.30)] ${
           featured ? "h-[156px] p-6" : "h-[124px] p-5"
         }`}
       >
@@ -15,7 +17,7 @@ function Tile({ inst, featured }: { inst: Institution; featured: boolean }) {
         <img
           src={inst.logo}
           alt={inst.name}
-          className={`w-auto object-contain ${featured ? "max-h-[108px] max-w-[86%]" : "max-h-[82px] max-w-[80%]"}`}
+          className={`w-auto object-contain ${featured ? "max-h-[108px] max-w-[86%]" : wide ? "max-h-[82px] max-w-[96%]" : "max-h-[82px] max-w-[80%]"}`}
         />
       </div>
       <figcaption
