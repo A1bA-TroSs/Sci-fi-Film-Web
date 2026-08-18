@@ -7,38 +7,32 @@ function initials(name: string) {
   return name.split(" ").map((w) => w[0]).slice(0, 2).join("").toUpperCase();
 }
 
-function photoStyle(name: string) {
-  if (name === "Sebastian Deterding" || name === "Zhonghua Yao") {
-    return { objectPosition: "center 30%" as const };
-  }
-
-  return undefined;
-}
-
-function Entry({ p, code }: { p: Person; code: string }) {
+function Card({ p }: { p: Person }) {
   const NameTag: React.ElementType = p.link ? "a" : "span";
   const nameProps = p.link
     ? { href: p.link, target: "_blank", rel: "noopener noreferrer", className: "dlink font-display text-[1.02rem] font-semibold leading-tight" }
     : { className: "font-display text-[1.02rem] font-semibold leading-tight text-[var(--fg)]" };
 
   return (
-    <div className="group flex items-start gap-4 border-t border-[var(--line)] py-4">
-      <span className="mt-1 hidden w-9 shrink-0 font-mono text-[0.62rem] tracking-[0.12em] text-[var(--faint)] sm:block">
-        {code}
-      </span>
-
-      <div className="relative h-[70px] w-[56px] shrink-0 overflow-hidden border border-[var(--line-2)]">
+    <figure className="group">
+      <div className="relative aspect-[4/5] w-full overflow-hidden border border-[var(--line-2)] bg-[var(--panel)]">
         {p.photo ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={p.photo} alt={p.name} className="h-full w-full object-cover" style={photoStyle(p.name)} />
+          <img
+            src={p.photo}
+            alt={p.name}
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          />
         ) : (
-          <div className="flex h-full w-full items-center justify-center bg-[var(--panel)] font-mono text-[0.8rem] tracking-[0.06em] text-[var(--amber)]">
+          <div className="flex h-full w-full items-center justify-center font-mono text-[1.5rem] tracking-[0.06em] text-[var(--amber)]">
             {initials(p.name)}
           </div>
         )}
+        {/* soft corner ticks for the dossier feel */}
+        <span className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-[rgba(214,164,90,0.06)]" />
       </div>
 
-      <div className="min-w-0 pt-0.5">
+      <figcaption className="mt-3">
         <NameTag {...nameProps}>
           {p.name}
           {p.link && (
@@ -47,14 +41,14 @@ function Entry({ p, code }: { p: Person; code: string }) {
             </svg>
           )}
         </NameTag>
-        <p className="mt-1 text-[0.82rem] leading-snug text-[var(--muted)]">{p.role}</p>
+        <p className="mt-1 text-[0.8rem] leading-snug text-[var(--muted)]">{p.role}</p>
         {p.affiliation && (
-          <p className="mt-0.5 font-mono text-[0.66rem] leading-snug tracking-[0.02em] text-[var(--faint)]">
+          <p className="mt-1 font-mono text-[0.64rem] leading-snug tracking-[0.02em] text-[var(--faint)]">
             {p.affiliation}
           </p>
         )}
-      </div>
-    </div>
+      </figcaption>
+    </figure>
   );
 }
 
@@ -63,7 +57,6 @@ export default function People() {
     <section id="people" className="section relative z-10 mx-auto max-w-[var(--maxw)] px-[var(--gutter)]">
       <div className="flex items-center justify-between border-t border-[var(--line)] pt-3">
         <span className="code">§ 02 — People</span>
-        <span className="code code-faint">02 / 04</span>
       </div>
 
       <Reveal className="mt-12">
@@ -74,21 +67,18 @@ export default function People() {
         </p>
       </Reveal>
 
-      <div className="mt-14 space-y-16">
+      <div className="mt-16 space-y-16">
         {GROUPS.map((g) => (
           <div key={g.id}>
             <Reveal>
-              <div className="mb-2 flex items-baseline gap-3">
-                <span className="code">{g.code}</span>
-                <h3 className="font-display text-[1.05rem] font-semibold uppercase tracking-[0.04em] text-[var(--fg)]">
-                  {g.title}
-                </h3>
-              </div>
+              <h3 className="mb-8 border-b border-[var(--line)] pb-3 font-display text-[1.05rem] font-semibold uppercase tracking-[0.04em] text-[var(--fg)]">
+                {g.title}
+              </h3>
             </Reveal>
-            <div className="grid gap-x-10 sm:grid-cols-2">
+            <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-5">
               {g.people.map((p, i) => (
-                <Reveal key={p.name} delay={(i % 2) * 60}>
-                  <Entry p={p} code={`${g.code}·${String(i + 1).padStart(2, "0")}`} />
+                <Reveal key={p.name} delay={(i % 5) * 50}>
+                  <Card p={p} />
                 </Reveal>
               ))}
             </div>

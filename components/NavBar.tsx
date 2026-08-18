@@ -36,7 +36,6 @@ export default function NavBar() {
     >
       <nav className="mx-auto flex max-w-[var(--maxw)] items-center justify-between px-[var(--gutter)] py-3.5">
         <button onClick={() => go("top")} className="group flex items-center gap-3 text-left">
-          <span className="code code-faint hidden sm:inline">WS-01</span>
           <span className="font-mono text-[0.74rem] font-medium uppercase tracking-[0.14em] text-[var(--fg)]">
             Human–AI Co-Creation
           </span>
@@ -54,9 +53,6 @@ export default function NavBar() {
               </button>
             ))}
           </div>
-          <span className="hidden font-mono text-[0.66rem] uppercase tracking-[0.16em] text-[var(--faint)] lg:inline">
-            Hosted · HKUST
-          </span>
           <button
             className="flex h-8 w-8 items-center justify-center border border-[var(--line-2)] md:hidden"
             onClick={() => setOpen((o) => !o)}

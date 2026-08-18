@@ -4,9 +4,8 @@ export default function Hero() {
   return (
     <section id="top" className="relative z-10 flex min-h-[100svh] flex-col justify-between px-[var(--gutter)] pt-24 pb-8">
       <div className="mx-auto w-full max-w-[var(--maxw)]">
-        <div className="flex items-center justify-between border-b border-[var(--line)] pb-3">
-          <span className="code">§ Dossier — WS-01</span>
-          <span className="code code-faint hidden sm:inline">Jupiter Station · Est. 2025</span>
+        <div className="border-b border-[var(--line)] pb-3">
+          <span className="code">Human–AI Co-Creation Workshop</span>
         </div>
       </div>
 
