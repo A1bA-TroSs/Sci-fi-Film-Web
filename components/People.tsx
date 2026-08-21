@@ -55,9 +55,7 @@ function Card({ p }: { p: Person }) {
 export default function People() {
   return (
     <section id="people" className="section relative z-10 mx-auto max-w-[var(--maxw)] px-[var(--gutter)]">
-      <div className="flex items-center justify-between border-t border-[var(--line)] pt-3">
-        <span className="code">§ 02 — People</span>
-      </div>
+      <div className="border-t border-[var(--line)] pt-3" />
 
       <Reveal className="mt-12">
         <h2 className="h-sec max-w-[18ch]">The minds behind the workshop</h2>

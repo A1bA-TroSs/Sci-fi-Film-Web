@@ -5,10 +5,7 @@ import Reveal from "./Reveal";
 export default function Intro() {
   return (
     <section id="brief" className="section relative z-10 mx-auto max-w-[var(--maxw)] px-[var(--gutter)]">
-      <div className="flex items-center justify-between border-t border-[var(--line)] pt-3">
-        <span className="code">§ 01 — The Workshop</span>
-        <span className="code code-faint">01 / 04</span>
-      </div>
+      <div className="border-t border-[var(--line)] pt-3" />
 
       <div className="mt-12 grid gap-x-10 gap-y-8 lg:grid-cols-12">
         <div className="lg:col-span-4">

@@ -15,8 +15,9 @@ export default function Hero() {
           Research-Led Interdisciplinary Workshop
         </p>
         <h1 className="display display-xl max-w-[16ch]">
-          Human–AI Co-Creation for{" "}
-          <span className="text-[var(--amber)]">Science Fiction</span> Filmmaking
+          Human–AI Co-Creation<br />
+          for <span className="text-[var(--amber)]">Science Fiction</span><br />
+          Filmmaking
         </h1>
         <p className="mt-8 max-w-[46ch] font-display text-[1.15rem] font-medium text-[var(--muted)] sm:text-[1.4rem]">
           Imagining Future Worlds through Human–AI Co-Creation.

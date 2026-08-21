@@ -3,28 +3,20 @@
 import { INSTITUTIONS, type Institution } from "@/lib/data";
 import Reveal from "./Reveal";
 
-function Tile({ inst, featured }: { inst: Institution; featured: boolean }) {
-  // Wide horizontal wordmarks get more width so they don't read small.
-  const wide = inst.name === "The Central Academy of Drama";
+function Logo({ inst, featured }: { inst: Institution; featured: boolean }) {
   return (
-    <figure className="flex h-full flex-col items-center text-center">
-      <div
-        className={`flex w-full items-center justify-center rounded-md border border-[rgba(255,255,255,0.28)] bg-[rgba(230,230,230,0.30)] ${
-          featured ? "h-[156px] p-6" : "h-[124px] p-5"
-        }`}
-      >
+    <figure className="flex h-full flex-col items-center justify-start text-center">
+      <div className={`flex items-center justify-center px-2 ${featured ? "h-[88px]" : "h-[66px]"}`}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={inst.logo}
           alt={inst.name}
-          className={`w-auto object-contain ${featured ? "max-h-[108px] max-w-[86%]" : wide ? "max-h-[82px] max-w-[96%]" : "max-h-[82px] max-w-[80%]"}`}
+          className={`w-auto max-w-full object-contain ${featured ? "max-h-[84px]" : "max-h-[62px]"}`}
         />
       </div>
       <figcaption
-        className={`mt-3 leading-snug ${
-          featured
-            ? "font-display text-[0.92rem] font-semibold text-[var(--fg)]"
-            : "font-display text-[0.8rem] font-medium text-[var(--muted)]"
+        className={`mt-3 font-display leading-snug text-[#3a3020] ${
+          featured ? "text-[0.82rem] font-semibold" : "text-[0.72rem] font-medium"
         }`}
       >
         {inst.name}
@@ -50,23 +42,26 @@ export default function Institutions() {
         </p>
       </Reveal>
 
-      {/* Lead institutions — larger, more prominent */}
-      <div className="mt-14 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-5">
-        {featured.map((inst, i) => (
-          <Reveal key={inst.name} delay={(i % 5) * 45}>
-            <Tile inst={inst} featured />
-          </Reveal>
-        ))}
-      </div>
+      {/* All logos sit directly on one large light-gold panel. */}
+      <Reveal className="mt-12">
+        <div className="rounded-2xl bg-[#ece1c2] p-7 sm:p-10">
+          {/* Five primary institutions — first row, larger */}
+          <div className="grid grid-cols-2 items-start gap-x-8 gap-y-10 sm:grid-cols-3 lg:grid-cols-5">
+            {featured.map((inst) => (
+              <Logo key={inst.name} inst={inst} featured />
+            ))}
+          </div>
 
-      {/* Remaining institutions */}
-      <div className="mt-10 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
-        {rest.map((inst, i) => (
-          <Reveal key={inst.name} delay={(i % 4) * 40}>
-            <Tile inst={inst} featured={false} />
-          </Reveal>
-        ))}
-      </div>
+          <div className="my-8 h-px w-full bg-[rgba(0,0,0,0.08)]" />
+
+          {/* Remaining institutions — six per row */}
+          <div className="grid grid-cols-2 items-start gap-x-6 gap-y-9 sm:grid-cols-4 lg:grid-cols-6">
+            {rest.map((inst) => (
+              <Logo key={inst.name} inst={inst} featured={false} />
+            ))}
+          </div>
+        </div>
+      </Reveal>
     </section>
   );
 }

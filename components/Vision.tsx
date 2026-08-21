@@ -6,10 +6,7 @@ export default function Vision() {
   return (
     <section id="vision" className="relative z-10 flex min-h-[92svh] flex-col justify-center px-[var(--gutter)]">
       <div className="mx-auto w-full max-w-[var(--maxw)]">
-        <div className="flex items-center justify-between border-t border-[var(--line)] pt-3">
-          <span className="code">§ 04 — Vision</span>
-          <span className="code code-faint">04 / 04</span>
-        </div>
+        <div className="border-t border-[var(--line)] pt-3" />
 
         <Reveal className="mt-[clamp(48px,12vh,140px)]">
           <p className="code mb-8">Our Vision</p>

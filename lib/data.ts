@@ -64,26 +64,26 @@ export const GROUPS: Group[] = [
 
 export interface Institution {
   name: string;
-  logo: string; // relative path, e.g. "logos/hkust-o.png"
+  logo: string; // relative path, e.g. "logos/hkust-c.png"
   featured?: boolean; // the five lead institutions — shown larger / first
 }
 
 // Order: five lead institutions first (HKUST → IC → UAL → MSRA → HKU), then the rest.
 export const INSTITUTIONS: Institution[] = [
-  { name: "The Hong Kong University of Science and Technology", logo: "logos/hkust-o.png", featured: true },
-  { name: "Imperial College London", logo: "logos/imperial-o.png", featured: true },
-  { name: "University of the Arts London", logo: "logos/ual-o.png", featured: true },
-  { name: "Microsoft Research Asia", logo: "logos/msra-o.png", featured: true },
-  { name: "The University of Hong Kong", logo: "logos/hku-o.png", featured: true },
-  { name: "Tsinghua University", logo: "logos/tsinghua-o.png" },
-  { name: "Nanyang Technological University", logo: "logos/ntu-o.png" },
-  { name: "The Central Academy of Drama", logo: "logos/cad-o.png" },
-  { name: "Central Academy of Fine Arts", logo: "logos/cafa-o.png" },
-  { name: "The Hong Kong University of Science and Technology (Guangzhou)", logo: "logos/hkust-gz-o.png" },
-  { name: "Beijing Film Academy", logo: "logos/bfa-o.png" },
-  { name: "Communication University of China", logo: "logos/cuc-o.png" },
-  { name: "Southern University of Science and Technology", logo: "logos/sustech-o.png" },
-  { name: "Hong Kong Baptist University", logo: "logos/hkbu-o.png" },
-  { name: "Beijing Normal University", logo: "logos/bnu-o.png" },
-  { name: "Lingnan University", logo: "logos/lingnan-o.png" },
+  { name: "The Hong Kong University of Science and Technology", logo: "logos/hkust-c.png", featured: true },
+  { name: "Imperial College London", logo: "logos/imperial-c.png", featured: true },
+  { name: "University of the Arts London", logo: "logos/ual-c.png", featured: true },
+  { name: "Microsoft Research Asia", logo: "logos/msra-c.png", featured: true },
+  { name: "The University of Hong Kong", logo: "logos/hku-c.png", featured: true },
+  { name: "Tsinghua University", logo: "logos/tsinghua-c.png" },
+  { name: "Nanyang Technological University", logo: "logos/ntu-c.png" },
+  { name: "The Central Academy of Drama", logo: "logos/cad-c.png" },
+  { name: "Central Academy of Fine Arts", logo: "logos/cafa-c.png" },
+  { name: "The Hong Kong University of Science and Technology (Guangzhou)", logo: "logos/hkust-gz-c.png" },
+  { name: "Beijing Film Academy", logo: "logos/bfa-c.png" },
+  { name: "Communication University of China", logo: "logos/cuc-c.png" },
+  { name: "Southern University of Science and Technology", logo: "logos/sustech-c.png" },
+  { name: "Hong Kong Baptist University", logo: "logos/hkbu-c.png" },
+  { name: "Beijing Normal University", logo: "logos/bnu-c.png" },
+  { name: "Lingnan University", logo: "logos/lingnan-c.png" },
 ];
